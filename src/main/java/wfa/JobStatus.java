@@ -31,12 +31,19 @@ package wfa;
 
 import java.util.Date;
 
+/**
+ * Job state that is maintained between job executions. Every time a job executes, the latest state is retrieved before
+ * execution. Then, it is updated after execution. Finally it is stored for use on the next execution.
+ */
 public class JobStatus {
 
+    /** the actual time the job completed its last execution. */
     private Date lastActualCompletionTime;
 
+    /** the actual time the job started its last execution. */
     private Date lastActualExecutionTime;
 
+    /** the time the job was scheduled to start its last execution. */
     private Date lastScheduledExecutionTime;
 
     public Date getLastActualCompletionTime() {

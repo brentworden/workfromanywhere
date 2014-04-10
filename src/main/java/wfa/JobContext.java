@@ -31,15 +31,33 @@ package wfa;
 
 import java.util.Date;
 
+/**
+ * The state of a job during its current execution.
+ */
 public class JobContext {
 
+    /** the actual time the job execution completed (set by the {@link JobExecutor}). */
     private Date actualCompletionTime;
 
+    /** the actual time the job execution started (set by the {@link JobExecutor}). */
     private Date actualExecutionTime;
 
-    private Job job;
+    /**
+     * Construct a context using the given job and scheduled execution time.
+     * @param job the job being executed
+     * @param nextScheduledExecutionTime the time the job is scheduled to start execution.
+     */
+    public JobContext(Job job, Date nextScheduledExecutionTime) {
+        super();
+        this.job = job;
+        this.nextScheduledExecutionTime = nextScheduledExecutionTime;
+    }
 
-    private Date nextScheduledExecutionTime;
+    /** the job being executed. */
+    private final Job job;
+
+    /** the time the job is scheduled to start execution. */
+    private final Date nextScheduledExecutionTime;
 
     public Date getActualCompletionTime() {
         return actualCompletionTime;
@@ -63,13 +81,5 @@ public class JobContext {
 
     public void setActualExecutionTime(Date actualExecutionTime) {
         this.actualExecutionTime = actualExecutionTime;
-    }
-
-    public void setJob(Job job) {
-        this.job = job;
-    }
-
-    public void setNextScheduledExecutionTime(Date nextScheduledExecutionTime) {
-        this.nextScheduledExecutionTime = nextScheduledExecutionTime;
     }
 }

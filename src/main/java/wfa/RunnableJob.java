@@ -29,17 +29,32 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package wfa;
 
+/**
+ * A {@link Job} implementation that simply delegates execution to a {@link Runnable} instance by calling its
+ * {@link Runnable#run()} method.
+ */
 public class RunnableJob extends AbstractJob {
 
-    private Runnable runnable;
+    /**
+     * Construct a new job using the given runnable target.
+     * 
+     * @param runnable
+     *            the runnable target for this job.
+     */
+    public RunnableJob(Runnable runnable) {
+        super();
+        this.runnable = runnable;
+    }
 
+    /** the runnable target for this job. */
+    private final Runnable runnable;
+
+    /**
+     * Execute this job using the given context. This method should only be called by the currently elected job leader.
+     * This implementation merely calls the {@link Runnable#run} method on {@link RunnableJob#runnable}
+     */
     @Override
     public void execute(JobContext ctx) {
         runnable.run();
     }
-
-    public void setRunnable(Runnable runnable) {
-        this.runnable = runnable;
-    }
-
 }

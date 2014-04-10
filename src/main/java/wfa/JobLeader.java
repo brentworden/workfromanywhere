@@ -135,9 +135,7 @@ public class JobLeader extends LeaderSelectorListenerAdapter {
             status.getLastActualCompletionTime());
 
         // create job execution context
-        final JobContext ctx = new JobContext();
-        ctx.setJob(job);
-        ctx.setNextScheduledExecutionTime(nextScheduledExecutionTime);
+        final JobContext ctx = new JobContext(job, nextScheduledExecutionTime);
 
         executor.execute(ctx);
 
